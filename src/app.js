@@ -4,6 +4,8 @@ const { sayHello,
         lowercase,
         firstCharacter,
         firstCharacters } = require('./lib/strings');
+const { add } = require('./lib/numbers');
+
 
 const app = express();
 
@@ -32,6 +34,10 @@ app.get('/strings/first-characters/:string', (req, res) => {
   } else {
     res.status(200).json({ result: firstCharacters(req.params.string, req.query.length) });
   }
+});
+
+app.get('/numbers/add/:a/and/:b', (req, res) => {
+  res.status(200).json({ result: add(parseInt(req.params.a), parseInt(req.params.b)) });
 });
 
 module.exports = app;
