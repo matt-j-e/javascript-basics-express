@@ -46,7 +46,16 @@ app.get('/numbers/add/:a/and/:b', (req, res) => {
   else res.status(200).json({ result: add(a, b) });
 });
 
-
+app.get('/numbers/subtract/:b/from/:a', (req, res) => {
+  const a = parseInt(req.params.a);
+  const b = parseInt(req.params.b);
+  if (Number.isNaN(a) || Number.isNaN(b)) {
+    res.status(400)
+    .json({ error: 'Parameters must be valid numbers.' });
+  } else {
+    res.status(200).json({ result: subtract(a, b) });
+  }
+});
 
 app.post('/numbers/multiply', (req, res) => {
   const a = req.body.a;
